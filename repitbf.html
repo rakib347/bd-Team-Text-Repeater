@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> bd Team Text Repeater</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 25px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            animation: glowBorder 4s linear infinite;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        textarea, input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s ease-in-out;
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        textarea:focus, input:focus {
+            box-shadow: 0 0 10px cyan;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            transform: scale(1.05);
+        }
+
+        .join-btn {
+            display: block;
+            margin: 20px auto 0;
+            padding: 12px;
+            width: 100%;
+            background: cyan;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .join-btn:hover {
+            background: lime;
+            box-shadow: 0 0 15px lime;
+        }
+
+        @keyframes glowBorder {
+            0% { box-shadow: 0 0 10px red; }
+            25% { box-shadow: 0 0 10px yellow; }
+            50% { box-shadow: 0 0 10px cyan; }
+            75% { box-shadow: 0 0 10px lime; }
+            100% { box-shadow: 0 0 10px magenta; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>bd Team Text Repeater</h1>
+        
+        <textarea id="inputText" placeholder="Enter your text..."></textarea>
+        <input type="number" id="repeatCount" placeholder="Enter repeat count">
+        
+        <button onclick="repeatText()">Repeat</button>
+        
+        <textarea id="outputText" readonly placeholder="Output will appear here..."></textarea>
+        <button onclick="copyText()">Copy Text</button>
+        
+        <a href="https://t.me/bdhackingchannel" target="_blank" class="join-btn">Join Telegram</a>
+    </div>
+
+    <script>
+        function repeatText() {
+            let text = document.getElementById("inputText").value;
+            let count = parseInt(document.getElementById("repeatCount").value);
+            
+            if (!text || isNaN(count) || count <= 0) {
+                alert("Please enter valid text and a repeat count.");
+                return;
+            }
+            
+            let output = (text + "\n").repeat(count);
+            document.getElementById("outputText").value = output;
+        }
+
+        function copyText() {
+            let outputText = document.getElementById("outputText");
+            outputText.select();
+            document.execCommand("copy");
+            alert("Text copied!");
+        }
+    </script>
+</body>
+</html>
